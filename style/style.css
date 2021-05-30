@@ -53,7 +53,7 @@ body {
 
 /* uvIndex rating */
 
-.card-text4 .low {
+.low {
   background-color: green;
   color: var(--primary);
 }

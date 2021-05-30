@@ -103,62 +103,52 @@ function displayWeatherBoard(city) {
   wind.textContent = "Wind:" + " " + data.current.wind_speed + " " + "MPH";
   humidity.textContent = "Humidity:" + " " + data.current.humidity + "%";
   uvIndex.textContent = "UV Index:" + " " + data.current.uvi;
-  element.classList.add("card-text4 low");
+  if (uvIndex <= 2) {
+    uvIndex.classList.add("low");
+  } else if (uvIndex >= 3 && uvIndex <= 7) {
+    uvIndex.classList.add("moderate");
+  } else {
+    uvIndex.classList.add("high");
+  }
+}
 
-  //Target UV Color changes
-  // indexEl.text("UV Index: ");
-  // var indexNumber = parseFloat(responseTwo.value);
-  // var indexNumberEl = $("<p>");
-  // indexNumberEl.text(indexNumber);
-  // indexNumberEl.attr("id", "index-number");
+// creating function to display forecast cards
+function displayFutureForecasts(city) {
+  // pulling data out of local storage
+  let data = JSON.parse(localStorage.getItem(city));
+  // grabbing html element for text content
+  let forecast = document.querySelectorAll(".card-forecast");
+  forecastContainerEl.classList.remove("hide");
+  // creating loop to empty out div once new city is submitted for search
+  for (let i = 0; i < forecast.length; i++) {
+    forecast[i].innerHTML = "";
+  }
 
-  // if (uvIndex <= 2) {
-  //   indexNumberEl.addClass("uv-data-index text-white");
-  // } else if (uvIndex >= 3 && indexNumber <= 7) {
-  //   indexNumberEl.addClass("uv-data-index text-white");
-  // } else {
-  //   indexNumberEl.addClass("uv-data-index text-white");
-  // }//
-  //}//
+  // looping through data to get daily forecast
+  // incrementing daily for 5 day forecast
+  for (let i = 0; i < forecast.length; i++) {
+    // creating html element
+    const date = document.createElement("h5");
+    const icon = document.createElement("img");
+    const temp = document.createElement("p");
+    const wind = document.createElement("p");
+    const humidity = document.createElement("p");
 
-  // creating function to display forecast cards
-  function displayFutureForecasts(city) {
-    // pulling data out of local storage
-    let data = JSON.parse(localStorage.getItem(city));
-    // grabbing html element for text content
-    let forecast = document.querySelectorAll(".card-forecast");
-    forecastContainerEl.classList.remove("hide");
-    // creating loop to empty out div once new city is submitted for search
-    for (let i = 0; i < forecast.length; i++) {
-      forecast[i].innerHTML = "";
-    }
+    // assigning value to text content
+    date.textContent = moment()
+      .add(i + 1, "days")
+      .format("dddd, MMMM Do");
+    icon.setAttribute(
+      "src",
+      "s://openweathermap.org/img/wn/" +
+        data.daily[i].weather[0].icon +
+        "@2x.png"
+    );
+    temp.textContent = "Temp:" + " " + data.daily[i].temp.day + "°F";
+    wind.textContent = "Wind:" + " " + data.daily[i].wind_speed + " " + "MPH";
+    humidity.textContent = "Humidity:" + " " + data.daily[i].humidity + "%";
 
-    // looping through data to get daily forecast
-    // incrementing daily for 5 day forecast
-    for (let i = 0; i < forecast.length; i++) {
-      // creating html element
-      const date = document.createElement("h5");
-      const icon = document.createElement("img");
-      const temp = document.createElement("p");
-      const wind = document.createElement("p");
-      const humidity = document.createElement("p");
-
-      // assigning value to text content
-      date.textContent = moment()
-        .add(i + 1, "days")
-        .format("dddd, MMMM Do");
-      icon.setAttribute(
-        "src",
-        "s://openweathermap.org/img/wn/" +
-          data.daily[i].weather[0].icon +
-          "@2x.png"
-      );
-      temp.textContent = "Temp:" + " " + data.daily[i].temp.day + "°F";
-      wind.textContent = "Wind:" + " " + data.daily[i].wind_speed + " " + "MPH";
-      humidity.textContent = "Humidity:" + " " + data.daily[i].humidity + "%";
-
-      // appending created elements
-      forecast[i].append(date, icon, temp, wind, humidity);
-    }
+    // appending created elements
+    forecast[i].append(date, icon, temp, wind, humidity);
   }
 }
