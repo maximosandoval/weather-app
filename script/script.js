@@ -103,6 +103,7 @@ function displayWeatherBoard(city) {
   wind.textContent = "Wind:" + " " + data.current.wind_speed + " " + "MPH";
   humidity.textContent = "Humidity:" + " " + data.current.humidity + "%";
   uvIndex.textContent = "UV Index:" + " " + data.current.uvi;
+  element.classList.add("card-text4 low");
 
   //Target UV Color changes
   // indexEl.text("UV Index: ");
