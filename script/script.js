@@ -18,33 +18,31 @@ const forecastContainerEl = document.querySelector("#forecast-containers");
 const createSearchHistory = document.querySelector("#main-container");
 const apiKey = "11a28f3b177613b00aee74b2e8b462f4";
 
-// function for user city input into form element
+// Function for city submit form
 let citySubmit = function (event) {
   // prevent default action
   event.preventDefault();
   let cityName = cityInputEl.value.trim();
 
-  // getting city info and setting it to empty strings for alert
+  // City info and setting - as well as - alert for string
   if (cityName) {
     getCityInfo(cityName);
 
     cityInputEl.value = "";
-    // alert if not value input into form and they click button
   } else {
     alert("Please enter a city");
   }
 
-  // creating buttons for previously searched cities
+  // Buttons for previously searched cities
   let createSearchHistoryButton = document.createElement("button");
   createSearchHistoryButton.textContent = cityName;
   createSearchHistory.append(createSearchHistoryButton);
 };
-// click event for search button in form
+// click event for search button
 userFormEl.addEventListener("submit", citySubmit);
 
-// function to make api call
+// API call
 getCityInfo = function (city) {
-  // weather api call
   var city = cityInputEl.value;
   let apiUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -57,11 +55,10 @@ getCityInfo = function (city) {
     })
     .then(function (data) {
       console.log(data);
-      // setting variables for latitude and longitude to use in apiUrl2
+
       let lat = data.coord.lat;
       let long = data.coord.lon;
 
-      // onecall api call
       let apiUrl2 =
         "https://api.openweathermap.org/data/2.5/onecall?lat=" +
         lat +
@@ -83,7 +80,7 @@ getCityInfo = function (city) {
     });
 };
 
-// grabbing HTML elements for display weather board
+// HTML elements for weather board
 const cityName = document.querySelector(".card-city");
 const currentDate = document.querySelector(".card-date");
 const temp = document.querySelector(".card-text1");
@@ -91,17 +88,19 @@ const wind = document.querySelector(".card-text2");
 const humidity = document.querySelector(".card-text3");
 const uvIndex = document.querySelector(".card-text4");
 
-// creating function to display content from api call
+// function to display weather content from api
 function displayWeatherBoard(city) {
-  // pulling data out of local storage
   let data = JSON.parse(localStorage.getItem(city));
   weatherContainerEl.classList.remove("hide");
-  // giving the variables data value and creating text content
+
   cityName.textContent = city;
   currentDate.textContent = moment().format("dddd, MMMM Do YYYY");
   temp.textContent = "Temp:" + " " + data.current.temp + "°F";
   wind.textContent = "Wind:" + " " + data.current.wind_speed + " " + "MPH";
   humidity.textContent = "Humidity:" + " " + data.current.humidity + "%";
+
+  /* uvIndex rating */
+  /* All CSS classes low, mod and high are in the stylesheet. */
   uvIndex.textContent = "UV Index:" + " " + data.current.uvi;
   if (uvIndex <= 2) {
     uvIndex.classList.add("low");
@@ -112,29 +111,28 @@ function displayWeatherBoard(city) {
   }
 }
 
-// creating function to display forecast cards
+// Function to display forecast cards
 function displayFutureForecasts(city) {
   // pulling data out of local storage
   let data = JSON.parse(localStorage.getItem(city));
-  // grabbing html element for text content
+  // HTML element for text content
   let forecast = document.querySelectorAll(".card-forecast");
   forecastContainerEl.classList.remove("hide");
-  // creating loop to empty out div once new city is submitted for search
+  // Loop to remove div to submit an new city
   for (let i = 0; i < forecast.length; i++) {
     forecast[i].innerHTML = "";
   }
 
-  // looping through data to get daily forecast
-  // incrementing daily for 5 day forecast
+  // Loop through data for daily forecast
   for (let i = 0; i < forecast.length; i++) {
-    // creating html element
+    // HTML elements are styled in CSS
     const date = document.createElement("h5");
     const icon = document.createElement("img");
     const temp = document.createElement("p");
     const wind = document.createElement("p");
     const humidity = document.createElement("p");
 
-    // assigning value to text content
+    // Value assigned to text content
     date.textContent = moment()
       .add(i + 1, "days")
       .format("dddd, MMMM Do");
@@ -147,8 +145,6 @@ function displayFutureForecasts(city) {
     temp.textContent = "Temp:" + " " + data.daily[i].temp.day + "°F";
     wind.textContent = "Wind:" + " " + data.daily[i].wind_speed + " " + "MPH";
     humidity.textContent = "Humidity:" + " " + data.daily[i].humidity + "%";
-
-    // appending created elements
     forecast[i].append(date, icon, temp, wind, humidity);
   }
 }
