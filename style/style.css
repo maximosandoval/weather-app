@@ -1,5 +1,172 @@
 /* CSS RESET */
-.container-fluid {
+
+:root {
+  --primary: whitesmoke;
+  --border-radius: 0.3rem;
+}
+
+body {
+  background-image: url(images/clear-img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  font-family: "Mitr", sans-serif;
+}
+
+#header {
+  font-family: "Mitr", sans-serif;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  background-color: #374e87;
+  color: var(--primary);
+}
+
+.btn {
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 6px 5px;
+  width: 72%;
+  display: block;
+  margin: 5px 0;
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  border: none;
+  outline: none;
+  background-color: #374e87;
+  box-shadow: 3px 3px #586ea8;
+  transform: translate(-1px, -1px);
+}
+
+.btn:hover {
+  color: var(--primary);
+  background-color: #586ea8;
+  transform: translate(0, 0);
+  box-shadow: 2px 2px;
+}
+
+#forecast-containers {
+  margin-top: 75px;
+}
+
+/* uvIndex rating */
+
+.low {
+  background-color: green;
+  color: var(--primary);
+}
+
+.moderate {
+  background-color: yellow;
+  color: black;
+}
+
+.high {
+  background-color: red;
+  color: var(--primary);
+}
+
+/* search history buttons */
+button {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  padding: 0.3em 1.2em;
+  background-color: #2628a5;
+  color: var(--primary);
+  text-align: center;
+  margin: 2px;
+  transition: background-color 1s ease 0s;
+}
+
+button :hover {
+  background-color: #0090ff;
+}
+
+/*///END/////*/
+
+.card-body {
+  background-color: #efefef;
+}
+
+.card.h-100 {
+  background-color: steelblue;
+}
+
+.card.h-100 .card-body {
+  background-color: steelblue;
+}
+
+.card-forecast {
+  text-align: center;
+  overflow: auto;
+  resize: both;
+}
+
+/* UV INDEX STYLING */
+.card-text4 .data.current.uvi {
+  color: #fafafa;
+  background-color: #00d6ff;
+}
+[data-value="data.current.uvi"] {
+  background-color: steelblue;
+}
+
+/* .city-name {
+}
+
+.weather-container {
+}
+
+.card-body {
+}
+.card-body card-city {
+}
+.card-date {
+}
+.card-text1 {
+}
+.card-text2 {
+}
+.card-text3 {
+}
+.card-text4 {
+} 
+
+/* OLD CSS */
+
+/* card styling */
+/* .hide {
+  display: none;
+}
+
+.card-body {
+  background-color: #dce3f5; 
+}
+
+
+.navbar-brand {
+  font-size: 36px;
+}
+
+.search-header {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.city-name {
+  font-size: 30px;
+}
+
+.forecast-date {
+  font-size: 18px;
+}
+
+/* OLD CODE */
+/* .container-fluid {
   overflow: hidden;
   background-color: #ffffff;
 }
@@ -20,12 +187,12 @@ h1 {
   color: #fff;
   margin: 10 0 10 0px;
   text-align: center;
-}
+} */
 /* General button class */
-.btn-group {
-  float: left;
-  /* display: block; */
-  color: blue;
+/* .btn-group {
+  float: left; */
+/* display: block; */
+/* color: blue;
   text-align: left;
   padding: 14px 16px;
   text-decoration: none;
@@ -42,9 +209,9 @@ h1 {
   color: white;
 }
 .btn .btn-secondary .search {
-  float: left;
-  /* display: block; */
-  color: blue;
+  float: left; */
+/* display: block; */
+/* color: blue;
   text-align: left;
   padding: 14px 16px;
   text-decoration: none;
@@ -59,13 +226,13 @@ h1 {
 .five-day-forecast {
 }
 
-.card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.card { */
+/* Add shadows to create the "card" effect */
+/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-}
+} */
 
 /* On mouse-over, add a deeper shadow */
-.card:hover {
+/* .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
+} */
