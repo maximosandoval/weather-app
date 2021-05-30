@@ -117,8 +117,8 @@ function displayWeatherBoard(city) {
   //   indexNumberEl.addClass("uv-data-index text-white");
   // } else {
   //   indexNumberEl.addClass("uv-data-index text-white");
-  // }
-}
+  // }//
+//}//
 
 // creating function to display forecast cards
 function displayFutureForecasts(city) {
