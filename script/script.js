@@ -47,7 +47,7 @@ getCityInfo = function (city) {
   // weather api call
   var city = cityInputEl.value;
   let apiUrl =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&units=imperial&APPID=" +
     apiKey;
@@ -148,7 +148,7 @@ function displayWeatherBoard(city) {
         .format("dddd, MMMM Do");
       icon.setAttribute(
         "src",
-        "http://openweathermap.org/img/wn/" +
+        "s://openweathermap.org/img/wn/" +
           data.daily[i].weather[0].icon +
           "@2x.png"
       );
