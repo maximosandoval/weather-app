@@ -102,9 +102,9 @@ function displayWeatherBoard(city) {
   /* uvIndex rating */
   /* All CSS classes low, mod and high are in the stylesheet. */
   uvIndex.textContent = "UV Index:" + " " + data.current.uvi;
-  if (uvIndex <= 2) {
+  if (data.current.uvi <= 2.0) {
     uvIndex.classList.add("low");
-  } else if (uvIndex >= 3 && uvIndex <= 7) {
+  } else if (data.current.uvi > 2.0 && data.current.uvi <= 7.0) {
     uvIndex.classList.add("moderate");
   } else {
     uvIndex.classList.add("high");
@@ -138,7 +138,7 @@ function displayFutureForecasts(city) {
       .format("dddd, MMMM Do");
     icon.setAttribute(
       "src",
-      "s://openweathermap.org/img/wn/" +
+      "https://openweathermap.org/img/wn/" +
         data.daily[i].weather[0].icon +
         "@2x.png"
     );
